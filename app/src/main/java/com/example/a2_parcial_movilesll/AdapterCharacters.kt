@@ -16,9 +16,13 @@ class AdapterCharacters(private val characters: List<Character>) :
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         private val textViewName: TextView = view.findViewById(R.id.textView_name)
         private val imageView_character: ImageView = view.findViewById(R.id.imageView_character)
+        private val textView_status: TextView = view.findViewById(R.id.textView_status)
+        private val textView_specie: TextView = view.findViewById(R.id.textView_specie)
 
         fun bind(character: Character) {
             textViewName.text = character.name
+            textView_status.text = character.status
+            textView_specie.text = character.species
             Picasso.get().load(character.image).into(imageView_character)
 
             view.setOnClickListener {

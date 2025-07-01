@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView_Characters: RecyclerView
     private lateinit var adapterCharacters: AdapterCharacters
-    private lateinit var textView_title: TextView
 
 
     private lateinit var spinner: Spinner
@@ -41,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView_Characters.layoutManager = LinearLayoutManager(this)
         recyclerView_Characters.adapter = adapterCharacters
 
-        textView_title = findViewById(R.id.textView_title)
 
         adapterCharacters.onItemClickListener = { character ->
             val intent = Intent(this, DetailActivity::class.java)
