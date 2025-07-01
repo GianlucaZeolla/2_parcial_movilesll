@@ -4,30 +4,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class AdapterCharacters(private val images: List<String>): RecyclerView.Adapter<AdapterCharacters.DogViewHolder>(){
+class AdapterCharacters(private val character: List<Character>): RecyclerView.Adapter<AdapterCharacters.ViewHolder>(){
 
-    inner class DogViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        private val imageView: ImageView = view.findViewById(R.id.imageView_character)
+    lateinit var onItemClickListener: (Character) -> Unit
 
-        fun bind(image: String) {
-            Picasso.get().load(image).into(imageView)
+    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+
+        fun bind(character: Character) {
+
+            view.setOnClickListener {
+                onItemClickListener(character)
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return DogViewHolder(layoutInflater.inflate(R.layout.item_list, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
-        val item = images[position]
-        holder.bind(item)
+        return ViewHolder(layoutInflater.inflate(R.layout.item_list, parent, false))
     }
 
     override fun getItemCount(): Int {
-        return images.size
+        return character.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val quake = character[position]
+        holder.bind(quake)
     }
 }
