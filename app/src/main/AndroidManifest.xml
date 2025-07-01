@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme._2_parcial_movilesll"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

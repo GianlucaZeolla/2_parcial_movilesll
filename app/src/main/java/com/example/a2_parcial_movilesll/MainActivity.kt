@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Spinner
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +16,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView_Characters: RecyclerView
-    private lateinit var spinner_characters:Spinner
     private lateinit var adapterCharacters: AdapterCharacters
 
     private var listCharacter = mutableListOf<Character>()
@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         recyclerView_Characters = findViewById(R.id.recyclerView_Characters)
-        spinner_characters = findViewById(R.id.spinner_characters)
 
         adapterCharacters = AdapterCharacters(listCharacter)
         recyclerView_Characters.layoutManager = LinearLayoutManager(this)
@@ -39,6 +38,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         getCharacters()
+
+        recyclerView_Characters.layoutManager = LinearLayoutManager(this)
+        recyclerView_Characters.adapter = adapterCharacters
+        recyclerView_Characters.setHasFixedSize(true)
+
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView_Characters.context,
+            LinearLayoutManager.VERTICAL
+        )
+        recyclerView_Characters.addItemDecoration(dividerItemDecoration)
+
+
 
     }
 

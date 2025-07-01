@@ -23,5 +23,8 @@ class DetailActivity : AppCompatActivity() {
         textViewSpecie.text = character?.species
         textViewGender.text = character?.gender
 
+        character?.image?.let { imageUrl ->
+
+        }
     }
 }
